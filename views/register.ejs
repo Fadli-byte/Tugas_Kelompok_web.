@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/Styles.css">
+  <title>Register</title>
+</head>
+<body>
+  <div class="container">
+    <h2>Register</h2>
+    <form action="/auth/register" method="POST">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" required>
+      
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+      
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required>
+      
+      <label for="kelas">Kelas</label>
+      <select name="kelas" id="kelas" required>
+        <option value="">--Pilih Kelas--</option>
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="D">D</option>
+      </select>
+      
+      <button type="submit">Register</button>
+    </form>
+    <p>Already have an account? <a href="/auth/login">Login here</a></p>
+  </div>
+</body>
+</html>

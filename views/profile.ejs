@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akun Berhasil Dibuat - Sistem Informasi Kelautan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        header {
+            background: linear-gradient(135deg, #006994, #003366);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #00ffff;
+        }
+
+        .main-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            padding: 2rem;
+        }
+
+        .success-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 100%;
+            max-width: 450px;
+            position: relative;
+        }
+
+        h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        p {
+            font-size: 18px;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+
+        .logout-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.4s ease;
+        }
+
+        .logout-btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .edit-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #dc3545;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.4s ease;
+            margin-top: 10px;
+        }
+
+        .edit-btn:hover {
+            background-color: #c82333;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background: #003366;
+            color: white;
+            padding: 3rem 0;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #00ffff;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .header-content {
+                justify-content: center;
+            }
+
+            .success-container {
+                margin: 1rem;
+                padding: 30px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon">🌊</span>
+                <h1>SIK</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#beranda">Beranda</a></li>
+                    <li><a href="#tentang">Tentang</a></li>
+                    <li><a href="#program">Program</a></li>
+                    <li><a href="#kontak" onclick="confirmDeleteAccount()">Hapus akun</a></li>
+                    <script>
+                        function confirmDeleteAccount() {
+                            if (confirm('Apakah Anda yakin ingin menghapus akun ini?')) {
+                                window.location.href = '/auth/delete-account';
+                            }
+                        }
+                    </script>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="main-container">
+      <div class="success-container">
+          <h2>Akun sukses dibuat, <span id="username"><%= user.username %></span></h2>
+          <p>Email: <span id="email"><%= user.email %></span></p>
+          <p>Kelas: <span id="kelas"><script>
+              document.write(document.cookie.split(';').filter(item => item.trim().startsWith('kelas=')).reduce((prev, current) => prev + current.split('=')[1], ''));
+          </script></span></p>
+          
+          <a href="/auth/logout" class="logout-btn">Logout</a>
+          <a href="#" class="edit-btn" onclick="editData()">Edit Data Anda</a>
+  
+          <script>
+              function editData() {
+                  // Ask user for new details
+                  const nama = prompt('Masukkan nama Anda: ', document.getElementById('username').innerText);
+                  const email = prompt('Masukkan email Anda: ', document.getElementById('email').innerText);
+                  const kelas = prompt('Masukkan kelas Anda: ', document.getElementById('kelas').innerText);
+  
+                  // Send updated data to the server
+                  fetch('/auth/edit', {
+                      method: 'POST',
+                      headers: {
+                          'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({
+                          name: nama,
+                          email: email,
+                          kelas: kelas
+                      })
+                  })
+                  .then(res => res.json())
+                  .then(data => {
+                      if (data.success) {
+                          // Update cookies and UI with new data
+                          document.cookie = 'kelas=' + kelas;
+  
+                          // Update the page dynamically without a refresh
+                          document.getElementById('username').innerText = nama;
+                          document.getElementById('email').innerText = email;
+                          document.getElementById('kelas').innerText = kelas;
+  
+                          alert(`Data Anda berhasil diubah menjadi:\nNama: ${nama}\nEmail: ${email}\nKelas: ${kelas}`);
+                      } else {
+                          alert('Gagal mengubah data Anda!');
+                      }
+                  })
+                  .catch(err => console.error(err));
+              }
+          </script>
+      </div>
+  </div>
+  
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Tentang SIK</h3>
+                <p>Program Studi Sistem Informasi Kelautan adalah program studi yang menggabungkan teknologi informasi dengan ilmu kelautan untuk pembangunan berkelanjutan.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Links Penting</h3>
+                <ul>
+                    <li><a href="https://sik-kdserang.upi.edu/akademik/">Akademik</a></li>
+                    <li><a href="https://berita.upi.edu/program-studi-sistem-informasi-kelautan-upi-tingkatkan-sdm-unggul-indonesia/">Berita</a></li>
+                    <li><a href="https://sik-kdserang.upi.edu/">Kemahasiswaan</a></li>
+                    <li><a href="https://sik-kdserang.upi.edu/faq/">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Kontak</h3>
+                <ul>
+                    <li>Email: info@sik.ac.id</li>
+                    <li>Telepon: (021) 1234-5678</li>
+                    <li>Alamat: Jl. Kelautan No. 123</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Sistem Informasi Kelautan. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" title="Facebook">📱</a>
+                <a href="#" title="Twitter">📨</a>
+                <a href="#" title="Instagram">📷</a>
+                <a href="#" title="LinkedIn">💼</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
